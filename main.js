@@ -1,87 +1,100 @@
-// main.js — version robuste (mettre à la racine / même dossier que tes pages)
-document.addEventListener('DOMContentLoaded', () => {
-  /* ------------------ apparition des sections ------------------ */
-  const sections = document.querySelectorAll('.section');
-  if (sections.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.2 });
-    sections.forEach(s => observer.observe(s));
-  }
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails du Projet 1</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <h1>Projet 1 : Site vitrine en HTML/CSS/JS</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">⬅ Retour au portfolio</a></li>
+        </ul>
+      </nav>
+      <!-- Bouton Dark Mode -->
+      <button id="darkModeToggle" title="Changer de thème">🌙</button>
+    </div>
+  </header>
 
-  /* ------------------ bouton "Retour en haut" ------------------ */
-  const topBtn = document.getElementById('topBtn');
-  if (topBtn) {
-    const toggleTop = () => topBtn.style.display = (window.scrollY > 300) ? 'block' : 'none';
-    // état initial + écoute
-    toggleTop();
-    window.addEventListener('scroll', toggleTop);
-    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  }
+  <main class="container">
+    <!-- Présentation -->
+    <section class="section">
+      <h2>Présentation du projet</h2>
+      <p>
+        Ce projet est un <strong>site vitrine</strong> que j’ai développé afin de mettre en pratique 
+        mes connaissances en <strong>HTML, CSS et JavaScript</strong>.  
+        L’objectif était de créer un site simple, responsive et agréable visuellement, 
+        qui présente des informations de manière claire.
+      </p>
+      <p>
+        Ce projet m’a permis de mieux comprendre :
+      </p>
+      <ul>
+        <li>La structure d’une page web avec HTML</li>
+        <li>Le stylage avancé avec CSS (mises en page, animations, responsive)</li>
+        <li>Les interactions simples avec JavaScript</li>
+      </ul>
+    </section>
 
-  /* ------------------ mode sombre ------------------ */
-  const toggleBtn = document.getElementById('darkModeToggle');
-  if (toggleBtn) {
-    // restaure préférence si souhaité (optionnel)
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark') {
-      document.body.classList.add('dark');
-      toggleBtn.textContent = '☀️';
-    } else {
-      toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    }
+    <!-- Image illustrative -->
+    <section class="section">
+      <h2>Aperçu du projet</h2>
+      <p>Voici un aperçu du site vitrine :</p>
+      <img src="projet1-apercu.png" alt="Aperçu du site vitrine" style="max-width:100%; border-radius:10px;">
+      <p style="font-size:0.9em; color:gray;">(Remplace cette image par une capture d’écran réelle de ton site)</p>
+    </section>
 
-    toggleBtn.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark');
-      toggleBtn.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-  }
+    <!-- Exemple de code -->
+    <section class="section">
+      <h2>Exemple de code utilisé</h2>
+      <p>
+        Voici un extrait du code HTML utilisé pour la partie <em>header</em> de mon site :
+      </p>
+      <pre><code>&lt;header&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Bienvenue sur mon site vitrine&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#services"&gt;Services&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre>
+    </section>
 
-  /* ------------------ mini-jeu : clique rapide ------------------ */
-  const playBtn = document.getElementById('playBtn');
-  const scoreDisplay = document.getElementById('score');
-  const timerDisplay = document.getElementById('timer');
+    <!-- Fonctionnalités -->
+    <section class="section">
+      <h2>Fonctionnalités principales</h2>
+      <ul>
+        <li>Un design responsive (qui s’adapte aux écrans de PC, tablette, smartphone)</li>
+        <li>Un menu de navigation simple et clair</li>
+        <li>Des sections séparées : présentation, projets, contact</li>
+        <li>Un footer avec mes coordonnées</li>
+      </ul>
+    </section>
 
-  if (playBtn && scoreDisplay && timerDisplay) {
-    let score = 0;
-    let timeLeft = 10;
-    let timerInterval = null;
-    let gameActive = false;
+    <!-- Conclusion -->
+    <section class="section">
+      <h2>Conclusion</h2>
+      <p>
+        Ce projet m’a permis d’acquérir de l’expérience en front-end et de mieux comprendre 
+        comment structurer et styliser une page web.  
+        C’est une base que je vais améliorer en ajoutant des effets JavaScript, 
+        des animations CSS, et des optimisations pour le SEO.
+      </p>
+    </section>
+  </main>
 
-    const updateScore = () => scoreDisplay.textContent = `Score : ${score}`;
-    const updateTimer = () => timerDisplay.textContent = `Temps restant : ${timeLeft}s`;
+  <footer>
+    <p>&copy; 2025 Mon Portfolio</p>
+  </footer>
 
-    playBtn.addEventListener('click', () => {
-      if (!gameActive) {
-        // démarrer la partie
-        score = 0;
-        timeLeft = 10;
-        gameActive = true;
-        updateScore();
-        updateTimer();
-
-        timerInterval = setInterval(() => {
-          timeLeft--;
-          updateTimer();
-          if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            gameActive = false;
-            timerDisplay.textContent = '⏳ Temps écoulé !';
-            alert(`🎉 Partie terminée ! Ton score est de ${score} clics.`);
-          }
-        }, 1000);
-      } else {
-        // incrémenter le score pendant la partie
-        score++;
-        updateScore();
-        // animation simple si tu l'ajoutes en CSS (.score-animate)
-        scoreDisplay.classList.add('score-animate');
-        setTimeout(() => scoreDisplay.classList.remove('score-animate'), 160);
-      }
-    });
-  }
-});
+  <script src="main.js"></script>
+</body>
+</html>
