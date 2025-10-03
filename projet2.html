@@ -9,53 +9,93 @@
 <body>
   <header>
     <div class="container header-flex">
-      <h1>Projet 2 : Application avec API</h1>
+      <h1>Projet 2 : Application interactive avec API</h1>
       <nav>
         <ul>
           <li><a href="index.html">⬅ Retour au portfolio</a></li>
         </ul>
       </nav>
+      <!-- Bouton Dark Mode -->
+      <button id="darkModeToggle" title="Changer de thème">🌙</button>
     </div>
   </header>
 
   <main class="container">
+    <!-- Présentation -->
     <section class="section">
-      <h2>Présentation</h2>
-      <p>Ce projet est une petite application web qui récupère des données à partir d’une 
-         <strong>API externe</strong> et les affiche à l’utilisateur. 
-         L’objectif était de pratiquer les appels réseau et la manipulation de données JSON.</p>
-    </section>
-
-    <section class="section">
-      <h2>Fonctionnalités</h2>
+      <h2>Présentation du projet</h2>
+      <p>
+        Ce projet est une <strong>application web interactive</strong> qui récupère et affiche des données 
+        provenant d’une <strong>API externe</strong>.  
+        L’objectif était de comprendre comment utiliser <em>fetch()</em> en JavaScript pour interagir avec un service externe
+        et mettre à jour l’interface utilisateur en fonction des données reçues.
+      </p>
+      <p>
+        Grâce à ce projet, j’ai pu apprendre :
+      </p>
       <ul>
-        <li>Appel d’une API avec <code>fetch()</code></li>
-        <li>Affichage dynamique des données reçues</li>
-        <li>Interface responsive et facile à utiliser</li>
+        <li>À faire des requêtes HTTP en JavaScript</li>
+        <li>À manipuler des données JSON</li>
+        <li>À afficher les résultats dynamiquement dans le DOM</li>
       </ul>
     </section>
 
+    <!-- Image illustrative -->
     <section class="section">
-      <h2>Exemple de code</h2>
+      <h2>Aperçu de l’application</h2>
+      <p>Voici un exemple d’affichage des données récupérées depuis une API :</p>
+      <img src="projet1-apercu.png" alt="Aperçu de l'application API" style="max-width:100%; border-radius:10px;">
+      <p style="font-size:0.9em; color:gray;">(Remplace cette image par une capture d’écran réelle de ton application)</p>
+    </section>
+
+    <!-- Exemple de code -->
+    <section class="section">
+      <h2>Exemple de code utilisé</h2>
+      <p>
+        Voici un extrait du code utilisé pour récupérer et afficher des données depuis une API :
+      </p>
       <pre><code>fetch("https://api.exemple.com/data")
   .then(response =&gt; response.json())
   .then(data =&gt; {
-    console.log(data);
-    // Ici, on affiche les infos dans la page
+    const container = document.getElementById("resultats");
+    container.innerHTML = "";
+    data.forEach(item =&gt; {
+      const p = document.createElement("p");
+      p.textContent = item.nom;
+      container.appendChild(p);
+    });
   })
   .catch(error =&gt; console.error("Erreur :", error));
 </code></pre>
+      <p>Le code ci-dessus fait un appel à une API, convertit la réponse en JSON et affiche chaque élément dans une liste.</p>
     </section>
 
+    <!-- Fonctionnalités -->
+    <section class="section">
+      <h2>Fonctionnalités principales</h2>
+      <ul>
+        <li>Appel à une API externe pour récupérer des données en temps réel</li>
+        <li>Affichage dynamique des résultats dans la page</li>
+        <li>Gestion des erreurs si l’API ne répond pas</li>
+        <li>Interface simple et responsive</li>
+      </ul>
+    </section>
+
+    <!-- Conclusion -->
     <section class="section">
       <h2>Conclusion</h2>
-      <p>Grâce à ce projet, j’ai appris à interagir avec une API,
-         traiter les données reçues et les intégrer dans une page web.</p>
+      <p>
+        Ce projet m’a appris à interagir avec une API en JavaScript et à manipuler des données JSON.  
+        Il constitue une première étape avant de travailler avec des APIs plus complexes 
+        et d’intégrer des fonctionnalités comme la recherche ou les filtres.
+      </p>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Mon Portfolio</p>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
