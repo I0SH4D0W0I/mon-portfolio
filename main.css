@@ -13,7 +13,7 @@ body {
 header {
   background: #35424a;
   color: #ffffff;
-  padding: 100px 0;
+  padding: 20px 0;
 }
 
 .header-flex {
@@ -27,6 +27,7 @@ h1 {
   font-size: 2em;
 }
 
+/* --- NAV --- */
 nav ul {
   list-style: none;
   padding: 0;
@@ -194,4 +195,29 @@ body.dark #topBtn {
 
 body.dark #darkModeToggle {
   color: #f4f4f4;
+}
+
+/* --- 🎮 Styles pour le Mini-jeu Projet 3 --- */
+#playBtn {
+  padding: 15px 25px;
+  font-size: 18px;
+  background: #35424a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#playBtn:hover {
+  background: #222;
+  transform: scale(1.1);
+}
+
+#score, #timer {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
 }
